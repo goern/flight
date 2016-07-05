@@ -145,6 +145,8 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
   winston.info("Database connection ready");
 
-  server = app.listen(8080);
+  server = app.listen(port);
   winston.info("Application is running on 8080");
 });
+
+module.exports = app;

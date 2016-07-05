@@ -7,9 +7,9 @@ chai.use(chaiHttp);
 
 describe('Basic routes tests', function() {
 
-    it('GET to / should return 200', function(done){
+    it('healthz should return 200', function(done){
         chai.request(server)
-        .get('/')
+        .get('/api/_status/healthz')
         .end(function(err, res) {
             res.should.have.status(200);
             done();
