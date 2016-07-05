@@ -132,13 +132,12 @@ if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
 }
 
 // if we cant construct a URL set a default
-if (mongoURL == null) {
+if ((mongoURL == null) && !(process.env.MONGO == 'NO')) {
   winston.error("No mongoURL constructable!");
   return;
 }
 
 // connect to our database
-// TODO user, pass, database need to be read from the ENV
 mongoose.connect(mongoURL);
 
 var db = mongoose.connection;
