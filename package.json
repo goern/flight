@@ -2,10 +2,11 @@
   "name": "flight",
   "version": "0.1.0",
   "description": "This is manage flight plans",
+  "author": "Christoph Görn <goern@b4mad.net>",
   "license" : "GPL-3.0",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "IP=0.0.0.0 PORT=3030 mocha --timeout 5000 tests/*_test.js",
     "start": "node server.js"
   },
   "repository": {
@@ -18,6 +19,9 @@
     "mongodb": "^2.1.6",
     "mongoose": "^4.5.3",
     "morgan": "^1.7.0",
-    "winston": "^2.2.0"
+    "winston": "^2.2.0",
+    "chai": "^3.5.0",
+    "chai-http": "^2.0.1",
+    "mocha": "^2.4.5"
   }
 }

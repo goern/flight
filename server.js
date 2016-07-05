@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // use morgan to log requests to the console
-app.use(morgan('dev'));
+app.use(morgan('combined'));
 
 // get an instance of the express Router
 var router = express.Router();
@@ -105,9 +105,38 @@ router.get('/_status/healthz', function(req, res) {
   res.json({ message: 'hooray! I am healthy!' });
 });
 
+// lets find our database
+var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
+    ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0',
+    mongoURL = process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL,
+    mongoURLLabel = "";
+
+if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
+  var mongoServiceName = process.env.DATABASE_SERVICE_NAME.toUpperCase(),
+  mongoHost = process.env[mongoServiceName + '_SERVICE_HOST'],
+  mongoPort = process.env[mongoServiceName + '_SERVICE_PORT'],
+  mongoDatabase = process.env[mongoServiceName + '_DATABASE'],
+  mongoPassword = process.env[mongoServiceName + '_PASSWORD']
+  mongoUser = process.env[mongoServiceName + '_USER'];
+
+  if (mongoHost && mongoPort && mongoDatabase) {
+    mongoURLLabel = mongoURL = 'mongodb://';
+    if (mongoUser && mongoPassword) {
+      mongoURL += mongoUser + ':' + mongoPassword + '@';
+    }
+    // Provide UI label that excludes user id and pw
+    mongoURLLabel += mongoHost + ':' + mongoPort + '/' + mongoDatabase;
+    mongoURL += mongoHost + ':' +  mongoPort + '/' + mongoDatabase;
+
+  }
+}
+
+// if we cant construct a URL set a default
+if (mongoURL == null) mongoURL = 'mongodb://flight:flight@localhost/flight';
+
 // connect to our database
 // TODO user, pass, database need to be read from the ENV
-mongoose.connect('mongodb://flight:flight@localhost/flight');
+mongoose.connect(mongoURL);
 
 var db = mongoose.connection;
 
