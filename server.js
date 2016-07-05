@@ -100,7 +100,7 @@ router.route('/flightplans/:id')
 // all of our routes will be prefixed with /api
 app.use('/api', router);
 
-router.get('/_status/healthz', function(req, res) {
+app.get('/_status/healthz', function(req, res) {
   // TODO chk if db != null or so
   res.json({ message: 'hooray! I am healthy!' });
 });
@@ -132,7 +132,10 @@ if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
 }
 
 // if we cant construct a URL set a default
-if (mongoURL == null) mongoURL = 'mongodb://flight:flight@localhost/flight';
+if (mongoURL == null) {
+  winston.error("No mongoURL constructable!");
+  return;
+}
 
 // connect to our database
 // TODO user, pass, database need to be read from the ENV

@@ -5,11 +5,11 @@ var server   = require('../server'),
 
 chai.use(chaiHttp);
 
+// TODO this test is not good, healthz may include mongodb connection check
 describe('Basic routes tests', function() {
-
     it('healthz should return 200', function(done){
         chai.request(server)
-        .get('/api/_status/healthz')
+        .get('/_status/healthz')
         .end(function(err, res) {
             res.should.have.status(200);
             done();
