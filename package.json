@@ -7,7 +7,7 @@
   "main": "server.js",
   "scripts": {
     "test": "IP=0.0.0.0 PORT=3030 MONGO=NO mocha --timeout 5000 tests/*_test.js",
-    "start": "node server.js"
+    "start": "OPENSHIFT_MONGODB_DB_URL='mongodb://flight:flight@localhost/flight' node server.js"
   },
   "repository": {
     "type" : "git",

@@ -242,8 +242,18 @@
             volumes:
               -
                 name: "${DATABASE_SERVICE_NAME}-data"
-                emptyDir:
-                  medium: ""
+                persistentVolumeClaim:
+                  claimName: "${DATABASE_SERVICE_NAME}"
+    - apiVersion: v1
+      kind: PersistentVolumeClaim
+      metadata:
+        name: "${DATABASE_SERVICE_NAME}"
+      spec:
+        accessModes:
+        - ReadWriteOnce
+        resources:
+          requests:
+            storage: "${DATABASE_VOLUME_CAPACITY}"
   parameters:
     -
       name: "NAME"
@@ -323,3 +333,9 @@
       description: "Password for the database admin user."
       generate: "expression"
       from: "[a-zA-Z0-9]{16}"
+    -
+      name: "DATABASE_VOLUME_CAPACITY"
+      description: Volume space available for data, e.g. 512Mi, 2Gi.
+      displayName: Volume Capacity
+      required: true
+      value: 1Gi
