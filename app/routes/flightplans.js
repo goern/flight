@@ -8,7 +8,7 @@ var bodyParser = require("body-parser");
 var morgan = require('morgan');
 var winston = require('winston');
 
-var FlightPlan = require('./models/flightplan');
+var FlightPlan = require('../models/flightplan');
 
 var app = express(); // define our app using express
 var server = null; // this gets set when mongo is connected

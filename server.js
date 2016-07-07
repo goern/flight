@@ -10,6 +10,7 @@ var winston = require('winston');
 
 var app = express(); // define our app using express
 var server = null; // this gets set when mongo is connected
+var db = null; // this is for mongoose
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
@@ -28,11 +29,14 @@ router.get('/', function(req, res) {
 });
 
 // bind routes to code
-app.use('/api/flightplans', require('./app/flightplans'));
+app.use('/api/flightplans', require('./app/routes/flightplans'));
 
-app.get('/_status/healthz', function(req, res) {
-  // TODO chk if db != null or so
-  res.json({ message: 'hooray! I am healthy!' });
+app.get('/healthz', function(req, res) {
+  if (db == null) {
+    return res.status(503).json({ message: 'MongoDB is not ready yet.'});
+  }
+
+  res.json({ message: 'All systems GO!' });
 });
 
 // lets find our database
@@ -70,7 +74,7 @@ if ((mongoURL == null) && !(process.env.MONGO == 'NO')) {
 // connect to our database
 mongoose.connect(mongoURL);
 
-var db = mongoose.connection;
+db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'connection error:'));
 
