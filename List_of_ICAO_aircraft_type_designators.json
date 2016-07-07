@@ -1,5 +1,10 @@
 [
   {
+    "ICAO": "ZZZZ",
+    "IATA": "ZZZ",
+    "Description": "Aircraft Type Designator is unavailable"
+  },
+  {
     "ICAO": "A124",
     "IATA": "A4F",
     "Description": "Antonov AN-124 Ruslan"

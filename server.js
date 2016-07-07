@@ -25,11 +25,12 @@ var router = express.Router();
 
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
 router.get('/', function(req, res) {
-    res.json({ message: 'hooray! welcome to our api!' });
+    res.json({ message: 'This is Flight API!', version: '0.0.1' });
 });
 
 // bind routes to code
 app.use('/api/flightplans', require('./app/routes/flightplans'));
+app.use('/api/aircrafts/types', require('./app/routes/aircraft_types'));
 
 app.get('/healthz', function(req, res) {
   if (db == null) {
@@ -72,11 +73,14 @@ if ((mongoURL == null) && !(process.env.MONGO == 'NO')) {
 }
 
 // connect to our database
-mongoose.connect(mongoURL);
+mongoose.connect(mongoURL, { server: { auto_reconnect:true } });
 
 db = mongoose.connection;
 
-db.on('error', console.error.bind(console, 'connection error:'));
+db.on('error', function(error) {
+  winston.error('Error in MongoDb connection: ' + error);
+  mongoose.disconnect();
+});
 
 db.once('open', function() {
   winston.info("Database connection ready");
@@ -84,5 +88,15 @@ db.once('open', function() {
   server = app.listen(port);
   winston.info("Application is running on 8080");
 });
+
+db.on('disconnected', function() {
+  winston.info('MongoDB disconnected!');
+  mongoose.connect(mongoURL, { server: { auto_reconnect:true } });
+});
+
+db.on('reconnected', function () {
+  winston.info('MongoDB reconnected!');
+});
+
 
 module.exports = app;
