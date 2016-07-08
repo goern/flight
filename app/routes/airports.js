@@ -2,12 +2,16 @@
  *
  */
 
+var mongoose = require('mongoose');
 var express = require("express");
 var bodyParser = require("body-parser");
 var morgan = require('morgan');
 var winston = require('winston');
 
+var Airport = require('../models/airport');
+
 var app = express(); // define our app using express
+var server = null; // this gets set when mongo is connected
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
@@ -22,23 +26,30 @@ var router = express.Router();
 
 router.route('/')
 .get(function(req, res) {
-  res.status(501).json({message: "no API here"})
+  Airport.find(function(err, ap) {
+    if (err) {
+      res.send(err);
+      return winston.error(err);
+    }
+
+    res.json(ap);
+  });
 }); // GET
 
-router.route('/:icao')
+router.route('/:id')
 .get(function(req, res) {
-  types = require('../List_of_ICAO_aircraft_type_designators');
-
-  winston.debug("looking for aircraft type designator (ICAO)", req.params.icao);
-
-  for (var ac in types) {
-    if (types[ac]["ICAO"] == req.params.icao) {
-      winston.info("A/C (ICAO)", types[ac]);
-      return res.json(types[ac]);
+  Airport.findById(req.params.id, function(err, ap) {
+    if (err) {
+      res.send(err);
+      return winston.error(err);
     }
-  }
 
-  res.json(null);
+    if (ap != null) {
+      winston.info(ap.id);
+    }
+
+    res.json(ap);
+  });
 }); // GET
 
 module.exports = router;

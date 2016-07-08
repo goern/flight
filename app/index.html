@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="flight">
+<head>
+  <title>Flight</title>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" media="screen" charset="utf-8">
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.css" media="screen" charset="utf-8">
+
+</head>
+<body>
+
+  <div class="container">
+    <div ng-controller="instantSearchCtrl">
+      <h3 class="headName">Aircraft Type Designator</h3>
+      <div class="bar">
+        <input type="text" class="search" ng-model="searchString" placeholder="Enter ICAO term here" />
+      </div>
+      <ul class="data-ctrl">
+        <li ng-repeat="i in items | searchFor:searchString">
+          <p>{{i.ICAO}}</p>
+          <p>{{i.Description}}</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

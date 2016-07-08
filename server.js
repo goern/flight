@@ -20,17 +20,22 @@ app.use(bodyParser.json());
 // use morgan to log requests to the console
 app.use(morgan('combined'));
 
+// serve static files from public/ directory
+//app.use(express.static('public'));
+
 // get an instance of the express Router
 var router = express.Router();
 
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
-router.get('/', function(req, res) {
-    res.json({ message: 'This is Flight API!', version: '0.0.1' });
+app.get('/', function(req, res) {
+    res.json({ paths: [ "/api/airports", "/api/flightplans", "/api/aircrafts/types",
+    "/healthz", "/healthz/ping", "/healthz/ready" ]});
 });
 
 // bind routes to code
 app.use('/api/flightplans', require('./app/routes/flightplans'));
 app.use('/api/aircrafts/types', require('./app/routes/aircraft_types'));
+app.use('/api/airports', require('./app/routes/airports'));
 
 app.get('/healthz', function(req, res) {
   if (db == null) {
@@ -73,6 +78,7 @@ if ((mongoURL == null) && !(process.env.MONGO == 'NO')) {
 }
 
 // connect to our database
+mongoose.set('debug', true);
 mongoose.connect(mongoURL, { server: { auto_reconnect:true } });
 
 db = mongoose.connection;

@@ -1,13 +1,25 @@
 {
   "name": "flight",
   "version": "0.1.0",
-  "description": "This is manage flight plans",
+  "description": "A text based flight simulator.",
   "author": "Christoph Görn <goern@b4mad.net>",
   "license" : "GPL-3.0",
   "main": "server.js",
   "scripts": {
-    "test": "IP=0.0.0.0 PORT=3030 MONGO=NO mocha --timeout 5000 tests/*_test.js",
-    "start": "node server.js"
+    "postinstall": "bower install",
+
+    "prestart": "npm install",
+
+    "http-server": "http-server -a localhost -p 8080 -c-1 ./app",
+    "start": "node server.js",
+
+    "preupdate-webdriver": "npm install",
+    "update-webdriver": "webdriver-manager update",
+
+    "preprotractor": "npm run update-webdriver",
+    "protractor": "protractor e2e-tests/protractor.conf.js",
+
+    "test": "IP=0.0.0.0 PORT=3030 MONGO=NO mocha --timeout 5000 tests/*_test.js"
   },
   "repository": {
     "type" : "git",
@@ -19,11 +31,24 @@
     "mongodb": "^2.1.6",
     "mongoose": "^4.5.3",
     "morgan": "^1.7.0",
-    "winston": "^2.2.0"
+    "winston": "^2.2.0",
+    "stream-transform": "^0.1.1"
   },
   "devDependencies": {
     "chai": "^3.5.0",
     "chai-http": "^2.0.1",
-    "mocha": "^2.4.5"
+    "mocha": "^2.4.5",
+    "bower": "^1.7.9",
+    "http-server": "^0.9.0",
+    "request": "^2.72.0",
+    "jasmine-core": "^2.4.1",
+    "karma": "^0.13.22",
+    "karma-chrome-launcher": "^0.2.3",
+    "karma-firefox-launcher": "^0.1.7",
+    "karma-jasmine": "^0.3.8",
+    "karma-junit-reporter": "^0.4.1",
+    "protractor": "^3.2.2",
+    "csv": "^1.1.0",
+    "csvtojson": "*"
   }
 }

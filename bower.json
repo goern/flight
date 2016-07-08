@@ -1,0 +1,17 @@
+{
+  "name": "flight",
+  "description": "A text based flight simulator.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/goern/flight.git",
+  "license": "GPL-3.0",
+  "private": true,
+  "dependencies": {
+    "angular": "1.5.x",
+    "angular-animate": "1.5.x",
+    "angular-mocks": "1.5.x",
+    "angular-resource": "1.5.x",
+    "angular-route": "1.5.x",
+    "bootstrap": "3.3.x",
+    "jquery": "2.2.x"
+  }
+}
