@@ -2,12 +2,8 @@
 <html lang="en" ng-app="flight">
 <head>
   <meta charset="utf-8">
-  <title>My HTML File</title>
+  <title>flight</title>
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
-  <link rel="stylesheet" href="/datenbrei/css/normalize.css" />
-  <link rel="stylesheet" href="http://b4mad.net/datenbrei//css/skeleton.css" />
-  <link rel="stylesheet" href="http://b4mad.net/datenbrei//css/overpass.css" />
-  <link rel="stylesheet" href="http://b4mad.net/datenbrei//css/custom.css" />
 </head>
 
 <body>
@@ -31,9 +27,9 @@
       </div>
       <ul class="data-ctrl">
         <li ng-repeat="i in items | airportFilter:icaoString">
-          <p>{{i.name}}</p>
-          <p>{{i.city}}</p>
-          <p>{{i.country}}</p>
+          <p>{{i.name}} (<a target="blank" href="http://www.openstreetmap.org/#map=15/{{i.lat}}/{{i.lon}}&layers=H">{{i.icao}}</a>)</p>
+          <p>{{i.city}} (<a target="blank" href="http://www.openstreetmap.org/#map=15/{{i.lat}}/{{i.lon}}&layers=H">{{i.lat}}, {{i.lon}}, {{i.alt}}</a>), {{i.country}} (UTC {{i.utc_offset}})</p>
+          <p></p>
         </li>
       </ul>
     </div>
