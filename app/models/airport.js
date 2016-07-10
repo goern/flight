@@ -19,5 +19,8 @@ var AirportSchema = new Schema({
   tz: String
 });
 
+AirportSchema.statics.findByICAO = function(icao, cb) {
+  return this.find({ icao: new RegExp(icao, 'i') }, cb);
+};
 
 module.exports = mongoose.model('airport', AirportSchema);
