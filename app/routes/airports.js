@@ -8,7 +8,6 @@ var bodyParser = require("body-parser");
 var morgan = require('morgan');
 var winston = require('winston');
 var request = require('request');
-var parse = require('csv-parse');
 
 var Airport = require('../models/airport');
 

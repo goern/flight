@@ -35,7 +35,8 @@
     "morgan": "^1.7.0",
     "winston": "^2.2.0",
     "stream-transform": "^0.1.1",
-    "ejs": "^2.4.2"
+    "ejs": "^2.4.2",
+    "csvtojson": "*"
   },
   "devDependencies": {
     "chai": "^3.5.0",
@@ -50,8 +51,6 @@
     "karma-firefox-launcher": "^0.1.7",
     "karma-jasmine": "^0.3.8",
     "karma-junit-reporter": "^0.4.1",
-    "protractor": "^3.2.2",
-    "csv": "^1.1.0",
-    "csvtojson": "*"
+    "protractor": "^3.2.2"
   }
 }
