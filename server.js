@@ -4,7 +4,9 @@
 
 var mongoose = require('mongoose');
 var express = require("express");
+var path = require('path');
 var bodyParser = require("body-parser");
+var cookieParser = require('cookie-parser');
 var morgan = require('morgan');
 var winston = require('winston');
 
@@ -16,21 +18,24 @@ var db = null; // this is for mongoose
 // this will let us get the data from a POST
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(cookieParser());
 
 // use morgan to log requests to the console
 app.use(morgan('combined'));
-
-// serve static files from public/ directory
-//app.use(express.static('public'));
 
 // get an instance of the express Router
 var router = express.Router();
 
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
-app.get('/', function(req, res) {
-    res.json({ paths: [ "/api/airports", "/api/flightplans", "/api/aircrafts/types",
-    "/healthz", "/healthz/ping", "/healthz/ready" ]});
-});
+
+// view engine setup
+app.set('views', path.join(__dirname, 'app/views'));
+app.set('view engine', 'ejs');
+app.engine('html', require('ejs').renderFile);
+
+// serve static files from public/ directory
+app.use(express.static(path.join(__dirname, 'public')));
+app.use('/', require('./app/routes/index'));
 
 // bind routes to code
 app.use('/api/flightplans', require('./app/routes/flightplans'));
