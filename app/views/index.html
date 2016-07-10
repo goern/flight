@@ -1,1 +1,30 @@
-Hello
+<!doctype html>
+<html lang="en" ng-app="flight">
+<head>
+  <meta charset="utf-8">
+  <title>My HTML File</title>
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+</head>
+
+<body>
+  <div class="container">
+    <div ng-controller="instantSearch">
+      <h3 class="headName">Aircraft Type Designator</h3>
+      <div class="bar">
+        <input type="text" class="search" ng-model="searchString" placeholder="Enter ICAO term here" />
+      </div>
+      <ul class="data-ctrl">
+        <li ng-repeat="i in items | searchFor:searchString">
+          <p>{{i.ICAO}}</p>
+          <p>{{i.Description}}</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

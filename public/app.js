@@ -4,7 +4,7 @@
 var app = angular.module('flight', [
 ]);
 
-app.controller('instantSearchCtrl',function($scope,$http){
+app.controller('instantSearch',function($scope,$http){
   $http.get('List_of_ICAO_aircraft_type_designators.json').success(function(data, status, headers, config) {
     $scope.items = data;
   }).error(function(data, status, headers, config) {
