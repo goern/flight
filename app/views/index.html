@@ -4,6 +4,10 @@
   <meta charset="utf-8">
   <title>My HTML File</title>
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+  <link rel="stylesheet" href="/datenbrei/css/normalize.css" />
+  <link rel="stylesheet" href="http://b4mad.net/datenbrei//css/skeleton.css" />
+  <link rel="stylesheet" href="http://b4mad.net/datenbrei//css/overpass.css" />
+  <link rel="stylesheet" href="http://b4mad.net/datenbrei//css/custom.css" />
 </head>
 
 <body>
@@ -20,6 +24,32 @@
         </li>
       </ul>
     </div>
+    <div ng-controller="airport_search">
+      <h3 class="headName">Airport Name</h3>
+      <div class="bar">
+        <input type="text" class="search" ng-model="icaoString" placeholder="Enter airport name or city here" />
+      </div>
+      <ul class="data-ctrl">
+        <li ng-repeat="i in items | airportFilter:icaoString">
+          <p>{{i.name}}</p>
+          <p>{{i.city}}</p>
+          <p>{{i.country}}</p>
+        </li>
+      </ul>
+    </div>
+    <!-- div ng-controller="flightplan_search">
+      <h3 class="headName">Flightplan</h3>
+      <div class="bar">
+        <input type="text" class="search" ng-model="icaoString" placeholder="Enter Flightplan ID here" />
+      </div>
+      <ul class="data-ctrl">
+        <li ng-repeat="i in items">
+          <p>{{i.name}}</p>
+          <p>{{i.city}}</p>
+          <p>{{i.country}}</p>
+        </li>
+      </ul>
+    </div -->
   </div>
 
   <script src="bower_components/angular/angular.js"></script>
