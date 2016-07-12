@@ -13,9 +13,12 @@
     "angular-route": "1.5.x",
     "angular-datatables": "^0.5.4",
     "bootstrap": "3.3.x",
-    "jquery": "2.2.x",
+    "jquery": "^2.2.4",
     "patternfly": "^3.6.0",
     "angular-patternfly": "^3.6.0",
     "clipboard": "^1.5.12"
+  },
+  "resolutions": {
+    "jquery": "~2.2.4"
   }
 }
