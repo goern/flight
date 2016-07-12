@@ -11,7 +11,11 @@
     "angular-mocks": "1.5.x",
     "angular-resource": "1.5.x",
     "angular-route": "1.5.x",
+    "angular-datatables": "^0.5.4",
     "bootstrap": "3.3.x",
-    "jquery": "2.2.x"
+    "jquery": "2.2.x",
+    "patternfly": "^3.6.0",
+    "angular-patternfly": "^3.6.0",
+    "clipboard": "^1.5.12"
   }
 }
