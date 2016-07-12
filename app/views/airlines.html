@@ -60,22 +60,25 @@
 <div class="container-fluid container-cards-pf">
 
   <div class="col-md-12">
-
-    <div class="blank-slate-pf">
-      <div class="blank-slate-pf-icon">
-        <span class="pficon pficon pficon-add-circle-o"></span>
+    <div class="card-pf card-pf-utilization">
+      <div class="card-pf-body">
+        <div class="row">
+          <div ng-controller="airline_datatable as airlines" class="col-md-12">
+            <h3 class="card-pf-subtitle">Airlines</h3>
+            <p class="card-pf-utilization-details">
+              <span class="card-pf-utilization-card-details-count"><i>?</i></span>
+              <span class="card-pf-utilization-card-details-description">
+                <span class="card-pf-utilization-card-details-line-1">total</span>
+                <span class="card-pf-utilization-card-details-line-2">airlines</span>
+              </span>
+            </p>
+            <div>
+              <table datatable="" dt-options="airlines.dtOptions" dt-columns="airlines.dtColumns" class="table table-striped table-bordered"></table>
+            </div>
+          </div>
+        </div>
       </div>
-      <h1>Welcome to flight!</h1>
-      <p>flight is a text based flightsimulator.</p>
-      <p>Learn more about this <a href="/docs/">on the documentation</a>.</p>
-      <div class="blank-slate-pf-main-action">
-        <a href="/flightplans" class="btn btn-primary btn-lg" role="button">add a Flightplan</a>
-      </div>
-      <div class="blank-slate-pf-secondary-action">
-        <a href="/airports" class="btn btn-default" role="button">search an Airport</a>
-        <a href="/airlines" class="btn btn-default" role="button">search an Airline</a>
-      </div>
-    </div><!-- blank-slate-pf -->
+    </div>
 
   </div>
 </div>

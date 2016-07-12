@@ -41,6 +41,7 @@ app.use('/', require('./app/routes/index'));
 app.use('/api/flightplans', require('./app/routes/flightplans'));
 app.use('/api/aircrafts/types', require('./app/routes/aircraft_types'));
 app.use('/api/airports', require('./app/routes/airports'));
+app.use('/api/airlines', require('./app/routes/airlines'));
 
 app.get('/healthz', function(req, res) {
   if (db == null) {

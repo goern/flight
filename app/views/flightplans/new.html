@@ -1,0 +1,165 @@
+
+<!DOCTYPE html>
+<!--[if IE 9]><html lang="en-us" class="ie9 layout-pf layout-pf-fixed"><![endif]-->
+<!--[if gt IE 9]><!-->
+<html lang="en-us" ng-app="flight" class="layout-pf">
+<!--<![endif]-->
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>flight</title>
+  <meta name="description" content="A text based flight simulator" />
+
+  <link rel="shortcut icon" href="/components/patternfly/dist/img/favicon.ico">
+  <!-- iPad retina icon -->
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/components/patternfly/dist/img/apple-touch-icon-precomposed-152.png">
+  <!-- iPad retina icon (iOS < 7) -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/components/patternfly/dist/img/apple-touch-icon-precomposed-144.png">
+  <!-- iPad non-retina icon -->
+  <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/components/patternfly/dist/img/apple-touch-icon-precomposed-76.png">
+  <!-- iPad non-retina icon (iOS < 7) -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/components/patternfly/dist/img/apple-touch-icon-precomposed-72.png">
+  <!-- iPhone 6 Plus icon -->
+  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/components/patternfly/dist/img/apple-touch-icon-precomposed-180.png">
+  <!-- iPhone retina icon (iOS < 7) -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/components/patternfly/dist/img/apple-touch-icon-precomposed-114.png">
+  <!-- iPhone non-retina icon (iOS < 7) -->
+  <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/components/patternfly/dist/img/apple-touch-icon-precomposed-57.png">
+  <link rel="stylesheet" href="/css/patternfly-adjusted.min.css">
+  <link rel="stylesheet" href="/components/patternfly/dist/css/patternfly-additions.min.css">
+  <link rel="stylesheet" href="/css/patternfly-site.min.css">
+  <link rel="stylesheet" href="/components/angular-datatables/dist/css/angular-datatables.min.css">
+
+  <script src="/components/jquery/dist/jquery.min.js"></script>
+  <script src="/components/datatables/media/js/jquery.dataTables.js"></script>
+  <script src="/components/angular/angular.min.js"></script>
+  <script src="/components/angular-resource/angular-resource.min.js"></script>
+  <script src="/components/angular-datatables/dist/angular-datatables.min.js"></script>
+  <script src="/components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="/components/bootstrap-combobox/js/bootstrap-combobox.js"></script>
+  <script src="/components/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
+  <script src="/components/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+  <script src="/components/bootstrap-switch/dist/js/bootstrap-switch.min.js"></script>
+  <script src="/components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
+  <script src="/components/bootstrap-treeview/dist/bootstrap-treeview.min.js"></script>
+  <script src="/components/c3/c3.min.js"></script>
+  <script src="/components/d3/d3.min.js"></script>
+  <script src="/components/google-code-prettify/bin/prettify.min.js"></script>
+  <script src="/components/clipboard/dist/clipboard.min.js"></script>
+  <script src="/components/patternfly/dist/js/patternfly.min.js"></script>
+
+  <script src="/components/matchHeight/jquery.matchHeight-min.js"></script>
+  <script src="/js/patternfly-site.min.js"></script>
+</head>
+
+<body class="cards-pf">
+  <div ng-include src="'/_navigation.html'"></div>
+
+<div class="container-fluid container-cards-pf">
+
+  <div class="col-md-12">
+    <div class="card-pf card-pf-utilization">
+      <div class="card-pf-body">
+        <div class="row">
+          <div ng-controller="" class="col-md-12">
+            <h3 class="card-pf-subtitle">Flightplans</h3>
+            <p class="card-pf-utilization-details">
+              <span class="card-pf-utilization-card-details-count"><i>?</i></span>
+              <span class="card-pf-utilization-card-details-description">
+                <span class="card-pf-utilization-card-details-line-1">total</span>
+                <span class="card-pf-utilization-card-details-line-2">Flightplans</span>
+              </span>
+            </p>
+            <div>
+<!--
+AircraftIdentification: String,
+DepartureAerodrome: String,
+DepartureTime: String,
+CruisingSpeed: String,
+CruisingLevel: String,
+Route: String,
+ArrivalAerodrome: String,
+EstimatedEnRouteTime: String,
+OtherInformation: String,
+Endurance: String,
+PersonsOnBoard: String,
+PilotInCommand: String,
+-->
+              <form class="form-horizontal">
+                <div class="form-group">
+                  <label class="col-sm-2 control-label" for="textInput-AircraftIdentification">AircraftIdentification</label>
+                  <div class="col-sm-10">
+                    <input type="text" id="textInput-AircraftIdentification" class="form-control">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label" for="textInput-DepartureAerodrome">DepartureAerodrome</label>
+                  <div class="col-sm-10">
+                    <input type="text" id="textInput-DepartureAerodrome" size="4" class="form-control">
+                  </div>
+                  <label class="col-sm-2 control-label" for="textInput-DepartureTime">DepartureTime</label>
+                  <div class="col-sm-10">
+                    <input type="text" id="textInput-DepartureTime" class="form-control">
+                  </div>
+                  <label class="col-sm-2 control-label" for="textInput-CruisingSpeed">CruisingSpeed</label>
+                  <div class="col-sm-10">
+                    <input type="text" id="textInput-CruisingSpeed" class="form-control">
+                  </div>
+                  <label class="col-sm-2 control-label" for="textInput-CruisingLevel">CruisingLevel</label>
+                  <div class="col-sm-10">
+                    <input type="text" id="textInput-CruisingLevel" class="form-control">
+                  </div>
+                  <label class="col-sm-2 control-label" for="textInput-Route">Route</label>
+                  <div class="col-sm-10">
+                    <input type="text" id="textInput-Route" class="form-control">
+                  </div>
+                  <label class="col-sm-2 control-label" for="textInput-ArrivalAerodrome">ArrivalAerodrome</label>
+                  <div class="col-sm-10">
+                    <input type="text" id="textInput-ArrivalAerodrome" size="4" class="form-control">
+                  </div>
+                  <label class="col-sm-2 control-label" for="textInput-EstimatedEnrouteTime">EstimatedEnrouteTime</label>
+                  <div class="col-sm-10">
+                    <input type="text" id="textInput-EstimatedEnrouteTime" class="form-control">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label" for="textInput-OtherInformation">OtherInformation</label>
+                  <div class="col-sm-10">
+                    <input type="text" id="textInput-OtherInformation" class="form-control">
+                  </div>
+                  <label class="col-sm-2 control-label" for="textInput-Endurance">Endurance</label>
+                  <div class="col-sm-10">
+                    <input type="text" id="textInput-Endurance" class="form-control">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label" for="textInput-PersonsOnBoard">PersonsOnBoard</label>
+                  <div class="col-sm-10">
+                    <input type="text" id="textInput-PersonsOnBoard" class="form-control">
+                  </div>
+                  <label class="col-sm-2 control-label" for="textInput-PilotInCommand">PilotInCommand</label>
+                  <div class="col-sm-10">
+                    <input type="text" id="textInput-PilotInCommand" class="form-control">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default">submit</button>
+                  </div>
+                </div>
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="/js/app.js"></script>
+</body>
+</html>
