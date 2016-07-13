@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-pf" role="navigation">
+<nav ng-controller="navigation" class="navbar navbar-default navbar-pf" role="navigation">
   <div class="navbar-header">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse-1">
       <span class="sr-only">Toggle navigation</span>
@@ -82,17 +82,17 @@
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-primary persistent-secondary">
-      <li class="active" id="nav_flightplans">
+      <li ng-class="{ active: isActive('/flightplans')}" id="nav_flightplans">
         <a href="/flightplans">Flightplans</a>
         <ul class="nav navbar-nav navbar-persistent">
-          <li><a href="/flightplans">on file</a></li>
-          <li><a href="/flightplans/new">create new</a></li>
+          <li ng-class="{ active: isActive('/flightplans')}"><a href="/flightplans">on file</a></li>
+          <li ng-class="{ active: isActive('/flightplans/new')}"><a href="/flightplans/new">create new</a></li>
         </ul>
       </li>
-      <li id="nav_airports">
+      <li ng-class="{ active: isActive('/airports')}" id="nav_airports">
         <a href="/airports">Airports</a>
       </li>
-      <li id="nav_airlines">
+      <li ng-class="{ active: isActive('/airlines')}" id="nav_airlines">
         <a href="/airlines">Airlines</a>
       </li>
       <li id="nav_aircrafts">

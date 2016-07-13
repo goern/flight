@@ -15,7 +15,15 @@ angular.module('flight', [
 .controller('airport_datatable', AirportsWithPromiseCtrl)
 .controller('flightplans_datatable', FlightplansWithPromiseCtrl)
 .controller('flightplans', FlightplansController)
-.controller('airline_datatable', AirlinesWithPromiseCtrl);
+.controller('airline_datatable', AirlinesWithPromiseCtrl)
+.controller('navigation', NavigationController);
+
+function NavigationController($scope, $location, $window) {
+    $scope.isActive = function(viewLocation) {
+      console.log($window.location.pathname);
+      return viewLocation === $window.location.pathname;
+    };
+};
 
 function FlightplansController($scope, $http, $location, $window) {
   $scope.master = {};
