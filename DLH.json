@@ -1,0 +1,26 @@
+[
+  {
+    "AircraftIdentification": "D-AIMJ",
+    "DepartureAerodrome": "KSFO",
+    "DepartureTime": "1500",
+    "CruisingSpeed": 494,
+    "CruisingSpeedUnit": "kts",
+    "CruisingLevel": 37000,
+    "CruisingLevelUnit": "ft",
+    "Route": "TRUKN2 ORRCA Q120 ZORUN PARZZ Q121 TOUGH HML ELVEL DUSMA JOVIE JANJO 5500N/05000W 5500N/04000W 5400N/03000W 5300N/02000W MALOT GISTI SLANY UL9 KONAN UL607 SPI UT180 PESOV T180 UNOKO UNOKO1B",
+    "ArrivalAerodrome": "EDDF",
+    "EstimatedEnrouteTime": 10
+  },
+  {
+    "AircraftIdentification": "D-AIMJ",
+    "DepartureAerodrome": "EDDF",
+    "DepartureTime": "1030",
+    "CruisingSpeed": 495,
+    "CruisingSpeedUnit": "kts",
+    "CruisingLevel": 40000,
+    "CruisingLevelUnit": "ft",
+    "Route": "FOLDY071041 TWISP DSD LMT J65 RBL MRRLO BDEGA2",
+    "ArrivalAerodrome": "KSFO",
+    "EstimatedEnrouteTime": 9.25    
+  }
+]
