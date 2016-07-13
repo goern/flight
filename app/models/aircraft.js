@@ -6,8 +6,8 @@ var mongoose     = require('mongoose');
 var Schema       = mongoose.Schema;
 
 var AircraftSchema = new Schema({
-    AircraftIdentification: String,
-    AircraftTypeDesignator: String
+    AircraftIdentification: { type: String, uppercase: true, required: true },
+    AircraftTypeDesignator: { type: String, required: true }
 });
 
 AircraftSchema.statics.findByAircraftIdentification = function(AircraftIdentification, cb) {

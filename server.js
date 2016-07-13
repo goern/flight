@@ -40,6 +40,7 @@ app.use('/', require('./app/routes/index'));
 // bind routes to code
 app.use('/api/flightplans', require('./app/routes/flightplans'));
 app.use('/api/aircrafts/types', require('./app/routes/aircraft_types'));
+app.use('/api/aircrafts', require('./app/routes/aircrafts'));
 app.use('/api/airports', require('./app/routes/airports'));
 app.use('/api/airlines', require('./app/routes/airlines'));
 
