@@ -52,6 +52,11 @@
 
   <script src="/components/matchHeight/jquery.matchHeight-min.js"></script>
   <script src="/js/patternfly-site.min.js"></script>
+  <style type="text/css">
+  .css-form input.ng-invalid.ng-touched {
+    background-color: #FA787E;
+  }
+</style>
 </head>
 
 <body class="cards-pf">
@@ -63,94 +68,92 @@
     <div class="card-pf card-pf-utilization">
       <div class="card-pf-body">
         <div class="row">
-          <div ng-controller="" class="col-md-12">
+          <div ng-controller="flightplans" class="col-md-12">
             <h3 class="card-pf-subtitle">Flightplans</h3>
             <p class="card-pf-utilization-details">
-              <span class="card-pf-utilization-card-details-count"><i>?</i></span>
+              <span class="card-pf-utilization-card-details-count"><i>{{total_flightplans}}</i></span>
               <span class="card-pf-utilization-card-details-description">
                 <span class="card-pf-utilization-card-details-line-1">total</span>
                 <span class="card-pf-utilization-card-details-line-2">Flightplans</span>
               </span>
             </p>
             <div>
-<!--
-AircraftIdentification: String,
-DepartureAerodrome: String,
-DepartureTime: String,
-CruisingSpeed: String,
-CruisingLevel: String,
-Route: String,
-ArrivalAerodrome: String,
-EstimatedEnRouteTime: String,
-OtherInformation: String,
-Endurance: String,
-PersonsOnBoard: String,
-PilotInCommand: String,
--->
-              <form class="form-horizontal">
+              <form class="form-horizontal css-form">
+                <div class="form-group">
+                  <label class="col-sm-2 control-label" for="textInput-DateOfFlight">Date of Flight:</label>
+                  <div class="col-sm-10">
+                    <input ng-model="flightplan.DateOfFlight" type="text" required id="textInput-DateOfFlight" class="form-control">
+                  </div>
+                </div>
                 <div class="form-group">
                   <label class="col-sm-2 control-label" for="textInput-AircraftIdentification">AircraftIdentification</label>
                   <div class="col-sm-10">
-                    <input type="text" id="textInput-AircraftIdentification" class="form-control">
+                    <input ng-model="flightplan.AircraftIdentification" type="text" required id="textInput-AircraftIdentification" class="form-control">
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-2 control-label" for="textInput-DepartureAerodrome">DepartureAerodrome</label>
                   <div class="col-sm-10">
-                    <input type="text" id="textInput-DepartureAerodrome" size="4" class="form-control">
+                    <input ng-model="flightplan.DepartureAerodrome" type="text" required id="textInput-DepartureAerodrome" size="4" class="form-control">
                   </div>
                   <label class="col-sm-2 control-label" for="textInput-DepartureTime">DepartureTime</label>
                   <div class="col-sm-10">
-                    <input type="text" id="textInput-DepartureTime" class="form-control">
+                    <input ng-model="flightplan.DepartureTime" type="text" required id="textInput-DepartureTime" class="form-control">
                   </div>
-                  <label class="col-sm-2 control-label" for="textInput-CruisingSpeed">CruisingSpeed</label>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label" for="textInput-CruisingSpeed">Cruising Speed</label>
                   <div class="col-sm-10">
-                    <input type="text" id="textInput-CruisingSpeed" class="form-control">
+                    <input ng-model="flightplan.CruisingSpeed" type="text" required id="textInput-CruisingSpeed" class="form-control">
                   </div>
-                  <label class="col-sm-2 control-label" for="textInput-CruisingLevel">CruisingLevel</label>
+                  <label class="col-sm-2 control-label" for="textInput-CruisingLevel">Cruising Level</label>
                   <div class="col-sm-10">
-                    <input type="text" id="textInput-CruisingLevel" class="form-control">
+                    <input ng-model="flightplan.CruisingLevel" type="text" required id="textInput-CruisingLevel" class="form-control">
                   </div>
                   <label class="col-sm-2 control-label" for="textInput-Route">Route</label>
                   <div class="col-sm-10">
-                    <input type="text" id="textInput-Route" class="form-control">
+                    <input ng-model="flightplan.Route" type="text" id="textInput-Route" class="form-control">
                   </div>
-                  <label class="col-sm-2 control-label" for="textInput-ArrivalAerodrome">ArrivalAerodrome</label>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label" for="textInput-ArrivalAerodrome">Arrival Aerodrome</label>
                   <div class="col-sm-10">
-                    <input type="text" id="textInput-ArrivalAerodrome" size="4" class="form-control">
+                    <input ng-model="flightplan.ArrivalAerodrome" type="text" required id="textInput-ArrivalAerodrome" size="4" class="form-control">
                   </div>
                   <label class="col-sm-2 control-label" for="textInput-EstimatedEnrouteTime">EstimatedEnrouteTime</label>
                   <div class="col-sm-10">
-                    <input type="text" id="textInput-EstimatedEnrouteTime" class="form-control">
+                    <input ng-model="flightplan.EstimatedEnrouteTime" type="text" required id="textInput-EstimatedEnrouteTime" class="form-control">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-sm-2 control-label" for="textInput-OtherInformation">OtherInformation</label>
+                  <label class="col-sm-2 control-label" for="textInput-OtherInformation">Other Information</label>
                   <div class="col-sm-10">
-                    <input type="text" id="textInput-OtherInformation" class="form-control">
+                    <input ng-model="flightplan.OtherInformation" type="text" id="textInput-OtherInformation" class="form-control">
                   </div>
                   <label class="col-sm-2 control-label" for="textInput-Endurance">Endurance</label>
                   <div class="col-sm-10">
-                    <input type="text" id="textInput-Endurance" class="form-control">
+                    <input ng-model="flightplan.Endurance" type="text" id="textInput-Endurance" class="form-control">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-sm-2 control-label" for="textInput-PersonsOnBoard">PersonsOnBoard</label>
+                  <label class="col-sm-2 control-label" for="textInput-PersonsOnBoard">Persons On Board</label>
                   <div class="col-sm-10">
-                    <input type="text" id="textInput-PersonsOnBoard" class="form-control">
+                    <input ng-model="flightplan.PersonsOnBoard" type="text" id="textInput-PersonsOnBoard" class="form-control">
                   </div>
-                  <label class="col-sm-2 control-label" for="textInput-PilotInCommand">PilotInCommand</label>
+                  <label class="col-sm-2 control-label" for="textInput-PilotInCommand">Pilot In Command</label>
                   <div class="col-sm-10">
-                    <input type="text" id="textInput-PilotInCommand" class="form-control">
+                    <input ng-model="flightplan.PilotInCommand" type="text" id="textInput-PilotInCommand" class="form-control">
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-default">submit</button>
+                    <button ng-click="update(flightplan)" type="submit" class="btn btn-primary">save</button>
+                    <button ng-click="reset()" type="submit" class="btn btn-secondary">reset</button>
                   </div>
                 </div>
               </form>
-
+              <pre>flightplan = {{flightplan | json}}</pre>
+              <pre>master = {{master | json}}</pre>
             </div>
           </div>
         </div>
