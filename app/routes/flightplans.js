@@ -28,14 +28,17 @@ router.route('/')
 // create a flightplans (accessed at POST http://localhost:8080/api/flightplans)
 .post(function(req, res) {
   var flightplan = new FlightPlan({
+    DateOfFlight: req.body.DateOfFlight,
     AircraftIdentification: req.body.AircraftIdentification,
     DepartureAerodrome: req.body.DepartureAerodrome,
     DepartureTime: req.body.DepartureTime,
     CruisingSpeed: req.body.CruisingSpeed,
+    CruisingSpeedUnit: req.body.CruisingSpeedUnit,
     CruisingLevel: req.body.CruisingLevel,
+    CruisingLevelUnit: req.body.CruisingLevelUnit,
     Route: req.body.Route,
     ArrivalAerodrome: req.body.ArrivalAerodrome,
-    EstimatedEnRouteTime: req.body.EstimatedEnRouteTime,
+    EstimatedEnrouteTime: req.body.EstimatedEnrouteTime,
     OtherInformation: req.body.OtherInformation,
     Endurance: req.body.Endurance,
     PersonsOnBoard: req.body.PersonsOnBoard,
@@ -45,7 +48,7 @@ router.route('/')
   // save the flightplan and check for errors
   flightplan.save(function(err) {
     if (err) {
-      res.send(err);
+      res.status(400).send(err);
       return winston.error(err);
     }
 
